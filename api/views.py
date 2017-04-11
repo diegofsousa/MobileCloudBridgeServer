@@ -24,7 +24,7 @@ class StatusView(APIView):
 			for server in Server.objects.all():
 				print(server.name)
 				try:
-					r = requests.get('http://'+server.ip+':8000/api', timeout=0.05)
+					r = requests.get('http://'+server.ip+':8000/api', timeout=1)
 					print(r.status_code)
 					print(json.loads(r.content.decode()))
 					if r.status_code == 200 and json.loads(r.content.decode()) == 'true':
