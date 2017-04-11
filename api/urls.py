@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from .views import StatusView
+from .views import StatusView, OrderView, MaxView, SumView, MinView
 
 helper_patterns = [
-    url(r'^', StatusView.as_view(), name='status'),
-    #url(r'^api/', include('api.urls')),
+    url(r'^$', StatusView.as_view(), name='status'),
+    url(r'^(?P<servername>[\w.@+-]+)/ordena/$', OrderView.as_view(), name='ordena'),
+    url(r'^(?P<servername>[\w.@+-]+)/soma/$', SumView.as_view(), name='soma'),
+    url(r'^(?P<servername>[\w.@+-]+)/max/$', MaxView.as_view(), name='max'),
+    url(r'^(?P<servername>[\w.@+-]+)/min/$', MinView.as_view(), name='min'),
 ]
 
 urlpatterns = helper_patterns
