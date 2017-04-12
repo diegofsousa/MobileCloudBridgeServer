@@ -13,6 +13,11 @@ from rest_framework import status
 from .models import Server
 
 class StatusView(APIView):
+	'''
+	O verbo get desta Classe Based View, retorna o estado de cada servidor.
+	O tempo de espera pela requisição (TTL) é reduzido (1 s/requisição) por conta
+	dos testes em pequena escala.
+	'''
 
 	def get(self, request, format=None):
 		try:
@@ -41,6 +46,10 @@ class StatusView(APIView):
 			return Response('Erro na conexão')
 
 class OrderView(APIView):
+	'''
+	O verbo post desta Class Based View replica outra requisição ao servidor escolhido
+	e retorna ao cliente a lista requisitada ordenada.
+	'''
 
 	def post(self, request, servername, format=None):
 		instanciaServer = get_object_or_404(Server, name=servername)
@@ -63,6 +72,10 @@ class OrderView(APIView):
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
 
 class SumView(APIView):
+	'''
+	O verbo post desta Class Based View replica outra requisição ao servidor escolhido
+	e retorna ao cliente a soma da lista requisitada.
+	'''
 
 	def post(self, request, servername, format=None):
 		instanciaServer = get_object_or_404(Server, name=servername)
@@ -85,6 +98,10 @@ class SumView(APIView):
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
 
 class MaxView(APIView):
+	'''
+	O verbo post desta Class Based View replica outra requisição ao servidor escolhido
+	e retorna ao cliente o maior numero da lista requisitada.
+	'''
 
 	def post(self, request, servername, format=None):
 		instanciaServer = get_object_or_404(Server, name=servername)
@@ -107,6 +124,10 @@ class MaxView(APIView):
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
 
 class MinView(APIView):
+	'''
+	O verbo post desta Class Based View replica outra requisição ao servidor escolhido
+	e retorna ao cliente o menor numero da lista requisitada.
+	'''
 
 	def post(self, request, servername, format=None):
 		instanciaServer = get_object_or_404(Server, name=servername)
